@@ -21,3 +21,16 @@ script:
   - flake8 .
   # Run Django tests
   - coverage run manage.py test
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key: $ACCESS_KEY
+  region: "us-west-2"
+  app: "django-tutorial"
+  env: "django-env"
+  bucket_name: "elasticbeanstalk-us-west-2-483748588056"
+  bucket_path: "django-tutorial/"
+  on:
+    repo: ls4934/swe1-app
+    branch: master
